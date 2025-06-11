@@ -50,7 +50,8 @@
       const data = encoder.encode(input);
       const hashBuffer = await crypto.subtle.digest('SHA-256', data);
       return Array.from(new Uint8Array(hashBuffer))
-        .map(b => b.toString(16).padStart(2, '0')).join('');
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
     }
 
     const secretMap = {
@@ -65,14 +66,15 @@
     };
 
     async function checkPassword() {
-      const input = document.getElementById("passwordInput").value;
+      const input = document.getElementById("passwordInput").value.trim();
       const hashed = await hash(input);
 
       if (secretMap[hashed]) {
         const url = atob(secretMap[hashed]);
+        console.log("Redirecting to:", url);
         window.location.href = url;
       } else {
-        alert("WRONG, try again");
+        alert("WRONG, TRY AGAIN");
       }
     }
     </script>
