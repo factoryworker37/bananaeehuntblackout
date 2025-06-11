@@ -45,19 +45,22 @@
   <button onclick="checkPassword()">test</button>
 
   <script>
-const secretMap = {
-  "database": "aHR0cHM6Ly9leGFtcGxlLmNvbQ=="
-};
+    const secretMap = {
+      "ZGF0YWJhc2U=": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvZGF0YWJhc2UuaHRtbA==",
+      "a3Jpcw==": "d3d3LmJhbmFuYS5ydW4ucGxhY2Uva3Jpcy5odG1s",
+      "YmFuYW5h": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvYmFuYW5hLmh0bWw="
+    };
 
-function checkPassword() {
-  const input = document.getElementById("passwordInput").value.trim();
-  if (secretMap[input]) {
-    const url = atob(secretMap[input]);
-    window.location.href = url;
-  } else {
-    alert("Incorrect code");
-  }
-}
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      const target = secretMap[input];
+      if (target) {
+        const decodedURL = atob(target);
+        window.location.href = decodedURL;
+      } else {
+        alert("WRONG TRY AGAIN");
+      }
+    }
     </script>
 </body>
 </html>
