@@ -63,7 +63,7 @@
 
       if (pagePathBase64) {
         const relativePath = atob(pagePathBase64);
-        window.location.href = window.location.origin + "/" + relativePath;
+        window.location.href = relativePath;
       } else {
         alert("WRONG TRY AGAIN");
       }
