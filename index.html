@@ -48,19 +48,30 @@
     const secretMap = {
       "ZGF0YWJhc2U=": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvZGF0YWJhc2UuaHRtbA==",
       "a3Jpcw==": "d3d3LmJhbmFuYS5ydW4ucGxhY2Uva3Jpcy5odG1s",
-      "YmFuYW5h": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvYmFuYW5hLmh0bWw="
+      "YmFuYW5h": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvYmFuYW5hLmh0bWw=",
+      "d4fba09b856cc0aa0f2b643f7d9ca20d309dc89b5e562f1229809c51f1e20dcc": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvcHV6emxlLmh0bWw=",
+      "c8c97cdd252556bc893ccba057aa851597ee6a6786cf71e599c2b5d4e8558fd0": "d3d3LmJhbmFuYS5ydW4ucGxhY2Uvc3Rpbmt5Lmh0bWw=",
+      "6c26d67c6f8bbbadbb2f70dc500c57cebc91c12d5c4c397cd48458424a4c26fe": "d3d3LmJhbmFuYS5ydW4ucGxhY2UveW91cmZhdm9yaXRlZnJpZW5kLmh0bWw=",
+      "15cbfab2cca18f28ee61e8a8c28b11cbadcbd1cc93f528d2f9e48e4000500004": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvdGh1cnNkYXkuaHRtbA==",
+      "0d9548a9f909f4014bf665aa7b4275ec9bf5a094cf6ed8cc44ba06ad110db9e0": "d3d3LmJhbmFuYS5ydW4ucGxhY2UvZGFpcnlxdWVlbi5odG1s"
     };
 
     function checkPassword() {
       const input = document.getElementById("passwordInput").value.trim();
-      const target = secretMap[input];
-      if (target) {
-        const decodedURL = atob(target);
-        window.location.href = decodedURL;
+      const encoded = btoa(input);
+      const pagePathBase64 = secretMap[encoded];
+
+      if (pagePathBase64) {
+        const relativePath = atob(pagePathBase64);
+        window.location.href = window.location.origin + "/" + relativePath;
       } else {
         alert("WRONG TRY AGAIN");
       }
     }
     </script>
+  <audio controls autoplay muted loop>
+        <source src="music/thunder.mp3">
+        <source src="music/thunder.wav">
+    </audio>
 </body>
 </html>
